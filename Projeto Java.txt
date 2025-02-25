@@ -1,0 +1,42 @@
+package com.mycompany.projeto;
+
+public class Projeto {
+
+    public static void main(String[] args) {
+        
+        Conta pessoal = new Conta();
+        
+        pessoal.numero = 123;
+        pessoal.nome = "Manassés";
+        pessoal.limite = 5000;
+        pessoal.saldo = 2000;
+        
+        System.out.println("Número da conta: " + pessoal.numero);
+        System.out.println("Nome: " + pessoal.nome);
+        System.out.println("Limite: " + pessoal.limite);
+        System.out.println("Saldo: " + pessoal.saldo);
+    }
+}
+
+CLASSE CONTA
+
+
+package com.mycompany.projeto;
+
+public class Conta {
+    
+    int numero;
+    String nome;
+    double limite;
+    double saldo;
+    
+    void Sacar(double v){
+        saldo += v;
+    }
+   
+    double Depositar(double d){
+        return saldo += d; 
+    }
+}
+
+
