@@ -1,27 +1,65 @@
-package com.mycompany.projeto;
+package com.mycompany.projetocassio;
 
-public class Projeto {
+import java.util.Scanner;
+
+public class ProjetoCassio {
 
     public static void main(String[] args) {
         
+        Scanner scanner = new Scanner(System.in);
+
         Conta pessoal = new Conta();
         
         pessoal.numero = 123;
-        pessoal.nome = "Manass�s";
+        pessoal.nome = "Manassés";
         pessoal.limite = 5000;
         pessoal.saldo = 2000;
         
-        System.out.println("N�mero da conta: " + pessoal.numero);
+        System.out.println("Número da conta: " + pessoal.numero);
         System.out.println("Nome: " + pessoal.nome);
         System.out.println("Limite: " + pessoal.limite);
         System.out.println("Saldo: " + pessoal.saldo);
+        
+        while (true) {
+            System.out.print("Quanto você deseja sacar? R$ ");
+            double saque = scanner.nextDouble();
+            
+            if (saque == 0) {
+                System.out.println("Você não sacou nada!");
+                break; 
+            }
+            
+            System.out.printf("Sacando: R$ %.2f\n ", saque);
+            System.out.println("=".repeat(30));
+            boolean sucesso = pessoal.Sacar(saque); 
+            
+            if (sucesso) {
+                System.out.println("Saque realizado com sucesso.");
+            } else {
+                System.out.println("Falha ao realizar o saque.");
+            }
+            
+            // Pergunta se o usuário deseja continuar
+            System.out.println("Deseja continuar? [S/N]");
+            String continuar = scanner.next(); 
+
+            if (continuar.equalsIgnoreCase("N")) {  
+                System.out.println("Saindo... Obrigado!");
+                break; 
+            }
+
+            System.out.println("Saldo após saque: R$ " + pessoal.saldo);
+        }
+        
+        scanner.close(); 
     }
 }
+
 
 CLASSE CONTA
 
 
-package com.mycompany.projeto;
+package com.mycompany.projetocassio;
 
 public class Conta {
     
@@ -30,12 +68,18 @@ public class Conta {
     double limite;
     double saldo;
     
-    void Sacar(double v){
-        saldo += v;
+    boolean Sacar(double v){
+        if (saldo + limite >= v) {
+            saldo -= v;
+            return true;
+        } else {
+            System.out.println("Saldo insuficiente para o saque.");
+            return false;
+        }
     }
    
-    double Depositar(double d){
-        return saldo += d; 
+    void Depositar(double d){
+        saldo += d; 
     }
 }
 
