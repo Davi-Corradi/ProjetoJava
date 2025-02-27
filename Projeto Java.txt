@@ -8,55 +8,92 @@ public class ProjetoCassio {
         
         Scanner scanner = new Scanner(System.in);
 
+        // Criando um objeto conta
         Conta pessoal = new Conta();
         
-        pessoal.numero = 123;
-        pessoal.nome = "Manassés";
-        pessoal.limite = 5000;
-        pessoal.saldo = 2000;
-        
-        System.out.println("Número da conta: " + pessoal.numero);
-        System.out.println("Nome: " + pessoal.nome);
-        System.out.println("Limite: " + pessoal.limite);
-        System.out.println("Saldo: " + pessoal.saldo);
-        
+        // Coletando as informações da conta com o usuário
+        System.out.println("Informe os dados da sua conta:");
+
+        System.out.print("Número da conta: ");
+        pessoal.numero = scanner.nextInt();  // Lê o número da conta
+
+        scanner.nextLine(); // Consumir a nova linha deixada pelo nextInt()
+
+        System.out.print("Nome do titular: ");
+        pessoal.nome = scanner.nextLine();  // Lê o nome do titular
+
+        System.out.print("Limite de crédito: R$ ");
+        pessoal.limite = scanner.nextDouble();  // Lê o limite de crédito
+
+        System.out.print("Saldo inicial: R$ ");
+        pessoal.saldo = scanner.nextDouble();  // Lê o saldo inicial
+
         while (true) {
-            System.out.print("Quanto você deseja sacar? R$ ");
-            double saque = scanner.nextDouble();
-            
-            if (saque == 0) {
-                System.out.println("Você não sacou nada!");
-                break; 
-            }
-            
-            System.out.printf("Sacando: R$ %.2f\n ", saque);
+            // Exibe o menu de opções
+            System.out.println("\nBANCO MANASSÉS");
             System.out.println("=".repeat(30));
-            boolean sucesso = pessoal.Sacar(saque); 
+            System.out.println("[1] CONTA");
+            System.out.println("[2] SAQUE");
+            System.out.println("[3] DEPÓSITO");
+            System.out.println("[4] SAIR");
+            System.out.println("=".repeat(30));
             
-            if (sucesso) {
-                System.out.println("Saque realizado com sucesso.");
-            } else {
-                System.out.println("Falha ao realizar o saque.");
+            // Lê a escolha do usuário
+            int escolha = scanner.nextInt();
+            
+            // Verifica se a escolha é válida
+            if (escolha < 1 || escolha > 4) {
+                System.out.println("Escolha inválida! Por favor, digite um número entre 1 e 4.");
+                continue; // Se a escolha não for válida, volta para o início
             }
             
-            // Pergunta se o usuário deseja continuar
-            System.out.println("Deseja continuar? [S/N]");
-            String continuar = scanner.next(); 
+            // Se o usuário escolher 1, mostrar as informações da conta
+            if (escolha == 1) {
+                System.out.println("Número da conta: " + pessoal.numero);
+                System.out.println("Nome: " + pessoal.nome);
+                System.out.println("Limite: " + pessoal.limite);
+                System.out.println("Saldo: " + pessoal.saldo);
+            }
+            // Se o usuário escolher 2, realizar saque
+            else if (escolha == 2) {
+                System.out.print("Quanto você deseja sacar? R$ ");
+                double saque = scanner.nextDouble();
 
-            if (continuar.equalsIgnoreCase("N")) {  
+                if (saque == 0) {
+                    System.out.println("Você não sacou nada!");
+                } else {
+                    System.out.printf("Sacando: R$ %.2f\n", saque);
+                    System.out.println("=".repeat(30));
+                    boolean sucesso = pessoal.Sacar(saque); 
+                    
+                    if (sucesso) {
+                        System.out.println("Saque realizado com sucesso.");
+                    } else {
+                        System.out.println("Falha ao realizar o saque.");
+                    }
+
+                    System.out.println("Saldo após saque: R$ " + pessoal.saldo);
+                }
+            }
+            // Se o usuário escolher 3, realizar depósito
+            else if (escolha == 3) {
+                System.out.print("Quanto você deseja depositar? R$ ");
+                double deposito = scanner.nextDouble();
+                
+                pessoal.Depositar(deposito);
+                System.out.println("Depósito realizado com sucesso.");
+                System.out.println("Saldo após depósito: R$ " + pessoal.saldo);
+            }
+            // Se o usuário escolher 4, sair
+            else if (escolha == 4) {
                 System.out.println("Saindo... Obrigado!");
-                break; 
+                break; // Sai do loop e termina o programa
             }
-
-            System.out.println("Saldo após saque: R$ " + pessoal.saldo);
         }
-        
+
         scanner.close(); 
     }
 }
-
-
-CLASSE CONTA
 
 
 package com.mycompany.projetocassio;
@@ -82,5 +119,3 @@ public class Conta {
         saldo += d; 
     }
 }
-
-
