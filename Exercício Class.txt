@@ -1,0 +1,47 @@
+public class Aluno{
+    
+    private String matricula;
+    String nome;
+    String curso;
+    char turma;
+    int periodo;
+    double nota1;
+    double nota2;
+    double notaFinal;
+    static int quant = 20;
+    
+    Aluno(String matricula, String nome, String curso, String turma, int periodo, double nota1, double nota2, double notaFinal) {
+    this.matricula = matricula;
+    this.nome = nome;
+    this.curso = curso;
+    this.turma = turma;
+    this.nota1 = nota1;
+    this.nota2 = nota2;
+    this.periodo = periodo;
+    this.notaFinal = notaFinal;
+}
+    Trocar(String matricula, String nome, String curso, String turma, int periodo, double nota1, double nota2, double notaFinal) {
+    this.matricula = matricula;
+    this.nome = nome;
+    this.curso = curso;
+    this.turma = turma;
+    this.nota1 = nota1;
+    this.nota2 = nota2;
+    this.periodo = periodo;
+    this.notaFinal = notaFinal;
+}
+    public void Imprimir(){
+    System.out.println("Matrícula : " + this.matricula);
+    System.out.println("Nome : " + this.nome);
+    System.out.println("Curso : " + this.curso);
+    System.out.println("Turma : " + this.turma);
+    System.out.println("Período : " + this.periodo);
+    System.out.println("Nota1 : " + this.nota1);
+    System.out.println("Nota2 : " + this.nota2);
+    System.out.println("Nota Final : " + this.notaFinal);
+
+    }  
+
+}
+
+
