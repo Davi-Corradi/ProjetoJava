@@ -1,18 +1,14 @@
-import java.time.Year;
-import java.util.Scanner;
 
 public class Main
 {
 	public static void main(String[] args) {
     
-    Scanner scan = new Scanner(System.in);
-
-    Aluno al1 = new Aluno();
-    Aluno al2 = new Aluno();
-    Trocar("2025","Davi","CC", "C", 3, 7, 7, 7);
-
-    // int x = Year.now().getValue();
-    // System.out.println(x);
+    Aluno al1 = new Aluno("Davi","CC", "C", 3, 7, 7);
+    al1.imprimir();
     
+    al1.passar("B", 4);
+    System.out.println("\nApós a mudança:");
+    al1.imprimir();
+
 	}
 }
