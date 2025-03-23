@@ -4,14 +4,15 @@ import java.util.Random;
 public class Aluno {
 
     private String matricula;
-    private String nome;
-    private String curso;
-    private String turma;
-    private int periodo;
     private double nota1;
     private double nota2;
-    private double notaFinal;
-    private static int quant = 0;
+    String nome;
+    String curso;
+    String turma;
+    String status;
+    int periodo;
+    double notaFinal;
+    static int quant = 0;
 
     Aluno(String nome, String curso, String turma, int periodo, double nota1, double nota2) {
         this.matricula = gerarMatricula();  
@@ -21,82 +22,59 @@ public class Aluno {
         this.nota1 = nota1;
         this.nota2 = nota2;
         this.periodo = periodo;
+        this.status = "Cursando";
         calcularFinal();  
+        atualizarStatus();
         quant++; 
     }
-
+    
+    Aluno(String nome, String turma){
+        this.matricula = gerarMatricula();
+        this.nome = nome.toUpperCase();
+        this.curso = "Engenharia";
+        this.turma = turma;     
+        this.periodo = 1;   
+        this.nota1 = 0;
+        this.nota2 = 0;
+        this.status = "Cursando";
+        calcularFinal();
+        quant++;
+    }
+    
     public String getMatricula() {
         return matricula;
     }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
+    
+    public String getStatus(){
+        return status;
     }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome.toUpperCase();  
-    }
-
-    public String getCurso() {
-        return curso;
-    }
-
-    public void setCurso(String curso) {
-        this.curso = curso;  
-    }
-
-    public String getTurma() {
-        return turma;
-    }
-
-    public void setTurma(String turma) {
-        this.turma = turma;
-    }
-
-    public int getPeriodo() {
-        return periodo;
-    }
-
-    public void setPeriodo(int periodo) {
-        this.periodo = periodo;
-    }
-
-    public double getNota1() {
+    
+    public double getNota1(){
         return nota1;
     }
-
-    public void setNota1(double nota1) {
+    
+    public void setNota1 (double nota1){
         this.nota1 = nota1;
-        calcularFinal(); 
+        atualizarStatus();
     }
 
-    public double getNota2() {
+    public double getNota2(){
         return nota2;
     }
-
-    public void setNota2(double nota2) {
+    
+    public void setNota2(double nota2){
         this.nota2 = nota2;
-        calcularFinal();  
+        atualizarStatus();
     }
-
-    public double getNotaFinal() {
-        return notaFinal;
-    }
-
+    
     public void calcularFinal() {
         this.notaFinal = (nota1 + nota2) / 2;
     }
-
     
-    public void passar(String novaTurma, int novoPeriodo) {
-        this.turma = novaTurma;
-        this.periodo = novoPeriodo;
+    public static int getQuant() {
+        return quant;
     }
-
+    
     private String gerarMatricula() {
         int ano = Year.now().getValue();
         Random rand = new Random();
@@ -104,6 +82,28 @@ public class Aluno {
         return ano + String.format("%04d", aleatorio);  
     }
 
+    private void atualizarStatus(){
+        calcularFinal();
+        if (notaFinal == 0){
+            this.status = "Cursando";
+        }
+        else if (notaFinal >= 7) {
+            this.status = "Aprovado";
+        }
+        else{
+            this.status = "Reprovado";
+        }
+    }
+    
+    public void passar(String novaTurma, int novoPeriodo) {
+        this.turma = novaTurma;
+        this.periodo = novoPeriodo;
+        this.setNota1(0);
+        this.setNota2(0);
+        this.notaFinal = 0;
+        this.status = "Cursando";
+        atualizarStatus();
+    }
     
     public void imprimir() {
         System.out.println("Matrícula: " + this.matricula);
@@ -114,9 +114,7 @@ public class Aluno {
         System.out.println("Nota 1: " + this.nota1);
         System.out.println("Nota 2: " + this.nota2);
         System.out.println("Nota Final: " + this.notaFinal);
+        System.out.println("Status : " + getStatus());
     }
 
-    public static int getQuant() {
-        return quant;
-    }
 }
