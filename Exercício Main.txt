@@ -1,14 +1,28 @@
 
+
 public class Main
 {
 	public static void main(String[] args) {
     
-    Aluno al1 = new Aluno("Davi","CC", "C", 3, 7, 7);
+    Aluno al1 = new Aluno("Davi","Ciência da Computação", "C", 3, 8, 7);
+    Aluno al2 = new Aluno("João", "A");
     al1.imprimir();
     
     al1.passar("B", 4);
-    System.out.println("\nApós a mudança:");
+    System.out.println("\nApós a mudança:\n");
     al1.imprimir();
-
+    System.out.println();
+    
+    
+    al2.periodo = 2;
+    al2.setNota1(8);
+    al2.setNota2(7);
+    al2.imprimir();
+    
+    al2.passar("B", 3);
+    System.out.println("\nApós a mudança:\n");
+    al2.imprimir();
+    
+    System.out.println("\nQuantidade de alunos : " + Aluno.getQuant());
 	}
 }
