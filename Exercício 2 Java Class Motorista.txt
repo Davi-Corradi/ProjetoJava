@@ -1,0 +1,20 @@
+﻿public class Motorista{
+    String nome;
+    String cnh;
+    private static int quant = 0;
+    
+    public Motorista(String nome, String cnh){
+        this.nome = nome;
+        this.cnh= cnh;
+        quant++;
+    }
+    
+    public static int getQuant(){
+        return quant;
+    }
+    @Override
+    public String toString(){
+        return "\nMotorista Atual: " + nome + "\nCNH: " + cnh;
+    }
+    
+}

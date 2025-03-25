@@ -1,0 +1,24 @@
+﻿public class Main
+{
+        public static void main(String[] args) {
+    
+    Motor motor1 = new Motor(150, "Gasolina");
+    Motor motor2 = new Motor(300, "Diesel");
+    
+    Carro carro1 = new Carro("Sedan", motor1);
+    Carro carro2 = new Carro("L200", motor2);
+    
+    Motorista motorista1 = new Motorista("Davi", "111111");
+    Motorista motorista2 = new Motorista("Daniel", "123456");
+    
+    carro1.setMotorista(motorista1);
+    carro1.setMotorista(motorista2);
+    carro2.setMotorista(motorista1);
+    System.out.println(carro1);
+    System.out.println(carro2);
+    
+    System.out.println("\nMotoristas cadastrados no sistema: " + Motorista.getQuant());
+    System.out.println(motorista1);
+    System.out.println(motorista2);
+        }
+}

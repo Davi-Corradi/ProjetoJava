@@ -1,0 +1,14 @@
+﻿public class Motor{
+    String tipoCombustivel;
+    int potencia;
+    
+    public Motor(int potencia, String tipoCombustivel){
+        this.potencia = potencia;
+        this.tipoCombustivel = tipoCombustivel;
+    }
+    
+    @Override
+    public String toString(){
+        return "Potência do Motor: " + potencia + "Combustível: " + tipoCombustivel;
+    }
+}

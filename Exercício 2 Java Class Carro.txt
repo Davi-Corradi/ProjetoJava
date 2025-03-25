@@ -1,0 +1,28 @@
+﻿public class Carro {
+    String modelo;
+    Motor motor;
+    Motorista motorista;
+    private int contador;
+    
+    public Carro(String modelo, Motor motor) {
+        this.modelo = modelo;
+        this.motor = motor;
+        this.motorista = null;
+        this.contador = 0;
+    }
+    public int getContador(){
+        return contador;
+    }
+    
+    public void setMotorista(Motorista motorista){
+        this.motorista = motorista;
+        contador++;
+    }
+    
+    @Override 
+    public String toString(){
+        return "Carro: " + modelo  + (motorista != null ? motorista: "\nNENHUM MOTORISTA") + "\nTotal de motoristas: " + contador;
+            
+    }
+    
+}
