@@ -1,0 +1,18 @@
+
+
+public class Main {
+    public static void main(String[] args) {
+        Agenda agenda = new Agenda();
+        
+        agenda.inserir("João", "(27) 91234-5678");
+        agenda.inserir("Manassés", "(27) 99762-5678");
+        agenda.inserir("Arthur", "(27) 99123-5678");
+        agenda.inserir("Cássio", "(27) 99999-5678");
+        agenda.inserir("Davi", "(27) 99888-5678");
+        
+        System.out.println(agenda.buscarNumero("João"));
+        agenda.imprimir();
+        
+        System.out.println("\nContatos cadastrados: " + agenda.tamanho());
+    }
+}
