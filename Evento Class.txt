@@ -1,0 +1,51 @@
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+public class Evento {
+    private String nome;
+    private Set<Participante> participantes;
+
+
+    public Evento(String nome) {
+        this.nome = nome;
+        this.participantes = new HashSet<>();
+    }
+
+    public void adicionar(Participante participante) {
+        if (participantes.contains(participante)) {
+            System.out.println("Participante com e-mail " + participante.getEmail() + " já cadastrado.");
+        } else {
+            participantes.add(participante);
+            System.out.println("Participante " + participante.getNome() + " adicionado ao evento " + nome + ".");
+        }
+    }
+
+    public void remover(String email) {
+        Iterator<Participante> iterator = participantes.iterator();
+        boolean encontrado = false;
+        while (iterator.hasNext()) {
+            Participante participante = iterator.next();
+            if (participante.getEmail().equals(email)) {
+                iterator.remove();
+                System.out.println("Participante com e-mail " + email + " removido do evento " + nome + ".");
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("Nenhum participante encontrado com o e-mail " + email + ".");
+        }
+    }
+
+    public void imprimir() {
+        if (participantes.isEmpty()) {
+            System.out.println("Nenhum participante cadastrado no evento " + nome + ".");
+        } else {
+            System.out.println("Participantes do evento " + nome + ":");
+            for (Participante participante : participantes) {
+                System.out.println(participante);
+            }
+        }
+    }
+}

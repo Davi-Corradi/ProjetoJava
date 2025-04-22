@@ -1,0 +1,26 @@
+public class Main {
+    public static void main(String[] args) {
+        Evento evento = new Evento("Conferência de Tecnologia");
+
+        
+        Participante p1 = new Participante("Carlos Silva", "carlos@email.com");
+        Participante p2 = new Participante("Ana Souza", "ana@email.com");
+        Participante p3 = new Participante("Maria Oliveira", "maria@email.com");
+        Participante p4 = new Participante("Carlos Silva", "carlos@email.com"); // E-mail duplicado
+
+        
+        evento.adicionar(p1);
+        evento.adicionar(p2);
+        evento.adicionar(p3);
+        evento.adicionar(p4);  
+
+        
+        evento.listarParticipantes();
+
+        
+        evento.removerParticipante("ana@email.com");
+
+        
+        evento.listarParticipantes();
+    }
+}
